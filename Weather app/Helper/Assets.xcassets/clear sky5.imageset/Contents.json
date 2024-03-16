@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "158 Mobile Wallpaper Backgrounds In HD For Free Download.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
