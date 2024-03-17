@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct SecureKey {
+struct SecureWeatherKey {
     
-    static let JSONKey = SecureKey()
+    static let JSONKey = SecureWeatherKey()
     
     var APIKey          = "68f51b88edd9477ccf9cf3a0c75e80c1"
     

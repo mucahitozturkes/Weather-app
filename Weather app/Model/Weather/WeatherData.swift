@@ -32,3 +32,4 @@ struct Wind: Codable {
     let speed: Float
 }
 
+

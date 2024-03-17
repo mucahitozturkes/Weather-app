@@ -10,6 +10,17 @@ import CoreLocation
 
 class ViewController: UIViewController {
    
+    
+    @IBOutlet weak var temp4Label: UILabel!
+    @IBOutlet weak var temp3Label: UILabel!
+    @IBOutlet weak var temp2Label: UILabel!
+    @IBOutlet weak var temp1Label: UILabel!
+    
+    @IBOutlet weak var date4Label: UILabel!
+    @IBOutlet weak var date3Label: UILabel!
+    @IBOutlet weak var date2Label: UILabel!
+    @IBOutlet weak var date1Label: UILabel!
+    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var wind: UILabel!
     
@@ -25,12 +36,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate        = self
+        locationManager.delegate               = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
-        cityNameTextField.delegate      = self
-        NetworkManager.shared.delegate  = self
+        cityNameTextField.delegate             = self
+        WeatherNetworkManager.shared.delegate  = self
+        ForecastNetworkManager.shared.delegate = self
+     
     }
     
     
@@ -52,7 +65,7 @@ extension ViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if let city = cityNameTextField.text {
-            WeatherManager.shared.fetchWeather(cityName: city)
+            WeatherAPI.shared.fetchWeather(cityName: city)
         }
     }
 }
@@ -60,7 +73,7 @@ extension ViewController: UITextFieldDelegate {
 
 extension ViewController: NetworkManagerDelegate {
     
-    func didUpdateWeather(_ networkManager: NetworkManager, weather: WeatherModel) {
+    func didUpdateWeather(_ networkManager: WeatherNetworkManager, weather: WeatherModel) {
         DispatchQueue.main.async {
                self.cityCal.text       = weather.temperatureString
                self.cityNameLabel.text = weather.cityName
@@ -68,11 +81,7 @@ extension ViewController: NetworkManagerDelegate {
                self.humidity.text      = weather.humidityString
                self.wind.text          = weather.windString
                self.descrption.text    = weather.descriptions
-             
-                print("Name: ", weather.cityName)
-                print("Temp: ", weather.temperatureString)
-            
-            
+
                if let symbolImage = UIImage(systemName: weather.getConditionName())?.withTintColor(.white, renderingMode: .alwaysOriginal) {
                    self.imageView.image = symbolImage
                }
@@ -87,12 +96,33 @@ extension ViewController: NetworkManagerDelegate {
               
            }
     }
+  
     
     
-    func didFailWithError(error: Error) {
+    func didFailWithErrorWeather(error: Error) {
         print(error)
     }
     
+    
+}
+
+extension ViewController: ForecastNetworkManagerDelegate {
+    
+    func didUpdateForecast(_ networkManager: ForecastNetworkManager, forecast: ForecastModel) {
+         
+        DispatchQueue.main.async {
+            self.date1Label.text    = forecast.dates1
+            self.date2Label.text    = forecast.dates2
+            self.date3Label.text    = forecast.dates3
+            self.date4Label.text    = forecast.dates4
+            
+        }
+           
+    }
+    
+    func didFailWithErrorForecast(error: Error) {
+        print(error)
+    }
     
 }
 
@@ -105,7 +135,8 @@ extension ViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-            WeatherManager.shared.fetchWeather(latitude: lat, longitude: lon)
+            WeatherAPI.shared.fetchWeather(latitude: lat, longitude: lon)
+            ForecastAPI.shared.fetchCityName(latitude: lat, longitude: lon)
         }
     }
     

@@ -7,20 +7,20 @@
 
 import Foundation
 
+
 protocol NetworkManagerDelegate {
-    func didUpdateWeather(_ networkManager: NetworkManager, weather: WeatherModel)
-    func didFailWithError(error: Error)
+    func didUpdateWeather(_ weatherNetworkManager: WeatherNetworkManager, weather: WeatherModel)
+    func didFailWithErrorWeather(error: Error)
 }
 
-class NetworkManager {
+class WeatherNetworkManager {
     
-    static let shared = NetworkManager()
+    static let shared = WeatherNetworkManager()
     
     var delegate: NetworkManagerDelegate?
     
-    func performRequest(with urlString: String) {
+    func performRequestWeather(with urlString: String) {
   
-        
         if let url = URL(string: urlString) {
        
             
@@ -30,7 +30,7 @@ class NetworkManager {
             let task = session.dataTask(with: url) { (data, response, error) in
                 
                 if error != nil {
-                    self.delegate?.didFailWithError(error: error!)
+                    self.delegate?.didFailWithErrorWeather(error: error!)
                     return
                 }
                 
@@ -68,10 +68,12 @@ class NetworkManager {
           
             
         } catch {
-            delegate?.didFailWithError(error: error)
+            delegate?.didFailWithErrorWeather(error: error)
             return nil
         }
     }
+    
+
     
     
 }

@@ -8,23 +8,23 @@
 import Foundation
 import CoreLocation
 
-struct WeatherManager {
+struct WeatherAPI {
     
-    static var shared = WeatherManager()
+    static var shared = WeatherAPI()
     
     var baseURL         = "https://api.openweathermap.org/data/2.5/weather?"
-    var JSONKey         = SecureKey.JSONKey.APIKey
+    var JSONKey         = SecureWeatherKey.JSONKey.APIKey
     var metric          = "&units=metric"
     
     func fetchWeather(cityName: String) {
         let urlString = "\(baseURL)q=\(cityName)&appid=\(JSONKey)\(metric)"
         
-        NetworkManager.shared.performRequest(with: urlString)
+        WeatherNetworkManager.shared.performRequestWeather(with: urlString)
     }
     
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let urlString = "\(baseURL)lat=\(latitude)&lon=\(longitude)&appid=\(JSONKey)\(metric)"
-        NetworkManager.shared.performRequest(with: urlString)
+        WeatherNetworkManager.shared.performRequestWeather(with: urlString)
     }
 }
