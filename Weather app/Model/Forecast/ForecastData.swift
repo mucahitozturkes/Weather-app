@@ -10,12 +10,21 @@ import Foundation
 struct ForecastData: Codable {
     let list: [ListItem]
    
+   
 }
-
 
 struct ListItem: Codable {
     let dt_txt: String
+    let main: MainItem
+    
 }
+
+
+struct MainItem: Codable {
+    let temp: Float
+}
+
+
 
 
 

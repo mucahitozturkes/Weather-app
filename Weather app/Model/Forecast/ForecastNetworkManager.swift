@@ -43,22 +43,29 @@ class ForecastNetworkManager {
             
         }
     }
-    
     func parseJSONForecast(forecastData: Data) -> ForecastModel? {
         let decoder = JSONDecoder()
         
         do {
             let decodedData = try decoder.decode(ForecastData.self, from: forecastData)
             
-            let dates1 = ForecastModel.formattedDateString(decodedData.list[6].dt_txt)     //list[6].dt_txt
-            let dates2 = ForecastModel.formattedDateString(decodedData.list[14].dt_txt)    //list[14].dt_txt
-            let dates3 = ForecastModel.formattedDateString(decodedData.list[22].dt_txt)    //list[22].dt_txt
-            let dates4 = ForecastModel.formattedDateString(decodedData.list[30].dt_txt)    //list[30].dt_txt
-           
+            var temps: [Float] = []
+            var dates: [String] = []
             
-            let forecast = ForecastModel(dates1: dates1, dates2: dates2, dates3: dates3, dates4: dates4)
+            for item in decodedData.list {
+                if item.dt_txt.hasSuffix("12:00:00") {
+                    temps.append(item.main.temp)
+                    dates.append(ForecastModel.formattedDateString(item.dt_txt))
+                }
+            }
             
-            return forecast
+            if temps.count >= 4 {
+                let forecast = ForecastModel(temp1: temps[0], temp2: temps[1], temp3: temps[2], temp4: temps[3],
+                                             dates1: dates[0], dates2: dates[1], dates3: dates[2], dates4: dates[3])
+                return forecast
+            } else {
+                return nil
+            }
             
         } catch {
             delegate?.didFailWithErrorForecast(error: error)
@@ -66,5 +73,7 @@ class ForecastNetworkManager {
         }
     }
 
-}
 
+
+
+   }

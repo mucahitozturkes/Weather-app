@@ -115,7 +115,10 @@ extension ViewController: ForecastNetworkManagerDelegate {
             self.date2Label.text    = forecast.dates2
             self.date3Label.text    = forecast.dates3
             self.date4Label.text    = forecast.dates4
-            
+            self.temp1Label.text    = forecast.temp1String
+            self.temp2Label.text    = forecast.temp2String
+            self.temp3Label.text    = forecast.temp3String
+            self.temp4Label.text    = forecast.temp4String
         }
            
     }
