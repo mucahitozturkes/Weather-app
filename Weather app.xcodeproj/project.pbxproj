@@ -14,6 +14,7 @@
 		084441BE2BA737970002C517 /* ForecastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084441BD2BA737970002C517 /* ForecastAPI.swift */; };
 		084441C02BA737AD0002C517 /* SecureForecastKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084441BF2BA737AD0002C517 /* SecureForecastKey.swift */; };
 		084441C32BA7F3CA0002C517 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084441C22BA7F3CA0002C517 /* Date+Ext.swift */; };
+		084441C72BA86E150002C517 /* pulse+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084441C62BA86E150002C517 /* pulse+Ext.swift */; };
 		08D5B9E32BA433B30067153D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9E22BA433B30067153D /* AppDelegate.swift */; };
 		08D5B9E52BA433B30067153D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9E42BA433B30067153D /* SceneDelegate.swift */; };
 		08D5B9E72BA433B30067153D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9E62BA433B30067153D /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 		084441BD2BA737970002C517 /* ForecastAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastAPI.swift; sourceTree = "<group>"; };
 		084441BF2BA737AD0002C517 /* SecureForecastKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureForecastKey.swift; sourceTree = "<group>"; };
 		084441C22BA7F3CA0002C517 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Ext.swift"; path = "../../../../../Downloads/Date+Ext.swift"; sourceTree = "<group>"; };
+		084441C62BA86E150002C517 /* pulse+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pulse+Ext.swift"; sourceTree = "<group>"; };
 		08D5B9DF2BA433B30067153D /* Weather app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D5B9E22BA433B30067153D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08D5B9E42BA433B30067153D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				084441C22BA7F3CA0002C517 /* Date+Ext.swift */,
+				084441C62BA86E150002C517 /* pulse+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -125,10 +128,10 @@
 			isa = PBXGroup;
 			children = (
 				084441C12BA7F3B10002C517 /* Extensions */,
-				08D5BA022BA46E560067153D /* Helper */,
+				08D5BA022BA46E560067153D /* Support */,
 				08D5BA012BA46E450067153D /* Utilities */,
 				08D5B9FC2BA4527B0067153D /* Model */,
-				08D5B9FF2BA46E180067153D /* View */,
+				08D5B9FF2BA46E180067153D /* Screen */,
 				08D5BA002BA46E2A0067153D /* Controller */,
 				08D5B9F02BA433B40067153D /* Info.plist */,
 			);
@@ -144,12 +147,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		08D5B9FF2BA46E180067153D /* View */ = {
+		08D5B9FF2BA46E180067153D /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				08D5B9E82BA433B30067153D /* Main.storyboard */,
 			);
-			path = View;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		08D5BA002BA46E2A0067153D /* Controller */ = {
@@ -169,7 +172,7 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		08D5BA022BA46E560067153D /* Helper */ = {
+		08D5BA022BA46E560067153D /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				08D5B9E42BA433B30067153D /* SceneDelegate.swift */,
@@ -177,7 +180,7 @@
 				08D5B9ED2BA433B40067153D /* LaunchScreen.storyboard */,
 				08D5B9EB2BA433B40067153D /* Assets.xcassets */,
 			);
-			path = Helper;
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +261,7 @@
 				084441712BA5B7D80002C517 /* SecureWeatherKey.swift in Sources */,
 				084441C32BA7F3CA0002C517 /* Date+Ext.swift in Sources */,
 				08D5B9FE2BA452980067153D /* WeatherModel.swift in Sources */,
+				084441C72BA86E150002C517 /* pulse+Ext.swift in Sources */,
 				08D5B9F72BA433E80067153D /* WeatherAPI.swift in Sources */,
 				084441C02BA737AD0002C517 /* SecureForecastKey.swift in Sources */,
 				08D5B9FB2BA4492A0067153D /* WeatherData.swift in Sources */,

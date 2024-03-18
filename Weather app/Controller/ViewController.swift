@@ -10,6 +10,16 @@ import CoreLocation
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var tempview: UILabel!
+    @IBOutlet weak var feelsLabel: UILabel!
+    @IBOutlet weak var windLbl: UILabel!
+    @IBOutlet weak var humLabel: UILabel!
+    @IBOutlet weak var feelView: UIImageView!
+    @IBOutlet weak var windView: UIImageView!
+    @IBOutlet weak var hummView: UIImageView!
+    
     @IBOutlet weak var backgorundView: UIView!
     
     @IBOutlet weak var cloud4Image: UIImageView!
@@ -50,7 +60,8 @@ class ViewController: UIViewController {
         WeatherNetworkManager.shared.delegate  = self
         ForecastNetworkManager.shared.delegate = self
         setBackgroundView()
-     
+        setHideAll()
+       
     }
     
     
@@ -94,22 +105,75 @@ extension ViewController: NetworkManagerDelegate {
                self.humidity.text      = weather.humidityString
                self.wind.text          = weather.windString
                self.descrption.text    = weather.descriptions
-
-               if let symbolImage = UIImage(systemName: weather.getConditionName())?.withTintColor(.white, renderingMode: .alwaysOriginal) {
-                   self.imageView.image = symbolImage
-               }
+            
+           
             DispatchQueue.main.async {
-                let backgroundImageName = weather.setBackgroundImageAsLabel()
-                if let image = UIImage(named: backgroundImageName) {
-                    self.backgroundImage.image = image
-                } else {
-                    print("Image named \(backgroundImageName) not found.")
-                }
+                UIView.transition(with: self.backgroundImage,
+                                  duration: 3.0,
+                                  options: .transitionCrossDissolve,
+                                  animations: {
+                                      let backgroundImageName = weather.setBackgroundImageAsLabel()
+                                      if let image = UIImage(named: backgroundImageName) {
+                                          self.backgroundImage.image = image
+                                      } else {
+                                          print("Image named \(backgroundImageName) not found.")
+                                      }
+                                  },
+                                  completion: nil)
+
             }
-              
-           }
+            
+            
+            if let symbolImage = UIImage(systemName: weather.getConditionName())?.withTintColor(.white, renderingMode: .alwaysOriginal) {
+                self.imageView.image = symbolImage
+            }
+ 
+        }
+        
     }
   
+    func setHideAll() {
+        locationButton.addPulseAnimation()
+                    self.cityCal.alpha          = 0.0
+                    self.cityNameLabel.alpha    = 0.0
+                    self.feelings.alpha         = 0.0
+                    self.humidity.alpha         = 0.0
+                    self.wind.alpha             = 0.0
+                    self.descrption.alpha       = 0.0
+                    self.imageView.alpha        = 0.0
+                    self.hummView.alpha         = 0.0
+                    self.windView.alpha         = 0.0
+                    self.feelView.alpha         = 0.0
+                    self.backgorundView.alpha   = 0.0
+                    self.humLabel.alpha         = 0.0
+                    self.windLbl.alpha          = 0.0
+                    self.feelsLabel.alpha       = 0.0
+                    self.tempview.alpha         = 0.0
+        
+    }
+    
+    
+    func setUnHideAll() {
+        locationButton.removePulseAnimation()
+        UIView.animate(withDuration: 3.0) {
+                    self.cityCal.alpha          = 1.0
+                    self.cityNameLabel.alpha    = 1.0
+                    self.feelings.alpha         = 1.0
+                    self.humidity.alpha         = 1.0
+                    self.wind.alpha             = 1.0
+                    self.descrption.alpha       = 1.0
+                    self.imageView.alpha        = 1.0
+                    self.hummView.alpha         = 1.0
+                    self.windView.alpha         = 1.0
+                    self.feelView.alpha         = 1.0
+                    self.backgorundView.alpha   = 1.0
+                    self.humLabel.alpha         = 1.0
+                    self.windLbl.alpha          = 1.0
+                    self.feelsLabel.alpha       = 1.0
+                    self.tempview.alpha         = 1.0
+                }
+        
+    }
     
     
     func didFailWithErrorWeather(error: Error) {
@@ -166,6 +230,9 @@ extension ViewController: CLLocationManagerDelegate {
             let lon = location.coordinate.longitude
             WeatherAPI.shared.fetchWeather(latitude: lat, longitude: lon)
             ForecastAPI.shared.fetchCityLocation(latitude: lat, longitude: lon)
+            setUnHideAll()
+           
+         
         }
     }
     

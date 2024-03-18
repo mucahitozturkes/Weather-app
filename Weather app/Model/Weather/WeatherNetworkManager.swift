@@ -33,6 +33,7 @@ class WeatherNetworkManager {
                     self.delegate?.didFailWithErrorWeather(error: error!)
                     return
                 }
+             
                 
                 if let safeData = data {
                     if let weather = self.parseJSON(weatherData: safeData) {

@@ -130,16 +130,16 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mb5-hw-cZ3">
-                                <rect key="frame" x="136.33333333333334" y="304" width="120.33333333333334" height="120"/>
+                                <rect key="frame" x="156.33333333333334" y="304" width="80.333333333333343" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4i-ri-xIw">
-                                        <rect key="frame" x="35.333333333333314" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="15.333333333333314" y="0.0" width="50" height="50"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rE6-hs-bfv">
-                                        <rect key="frame" x="0.0" y="65" width="120.33333333333333" height="55"/>
+                                        <rect key="frame" x="0.0" y="65" width="80.333333333333329" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3v-ox-Htc">
                                                 <rect key="frame" x="0.0" y="0.0" width="68.333333333333329" height="55"/>
@@ -150,8 +150,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-cT-QVT">
-                                                <rect key="frame" x="70.333333333333314" y="0.0" width="50" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="º" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-cT-QVT">
+                                                <rect key="frame" x="70.333333333333314" y="0.0" width="10" height="26.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -161,17 +161,10 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ace-Ik-G0U">
-                                <rect key="frame" x="70" y="138" width="253" height="135.66666666666669"/>
+                                <rect key="frame" x="70" y="139" width="253" height="135"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ace-Ik-G0U" secondAttribute="height" multiplier="15:8" id="CSb-FH-pIK"/>
                                 </constraints>
-                                <imageReference key="image" image="sparkles" catalog="system" renderingMode="hierarchical-single">
-                                    <hierarchicalColors>
-                                        <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color systemColor="secondaryLabelColor"/>
-                                        <color systemColor="tertiaryLabelColor"/>
-                                    </hierarchicalColors>
-                                </imageReference>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-37-CGZ">
                                 <rect key="frame" x="16.000000000000007" y="75" width="101.66666666666669" height="50"/>
@@ -367,14 +360,22 @@
                         <outlet property="date3Label" destination="1F8-gm-q2v" id="yCF-2U-WGU"/>
                         <outlet property="date4Label" destination="UZG-ic-YNg" id="mWS-nU-cwe"/>
                         <outlet property="descrption" destination="y4i-ri-xIw" id="ieo-h5-ms7"/>
+                        <outlet property="feelView" destination="P6b-To-ynA" id="1wt-EG-G3f"/>
                         <outlet property="feelings" destination="PWL-3J-e3y" id="IvE-e7-2UR"/>
+                        <outlet property="feelsLabel" destination="Q3P-9z-131" id="N9t-CO-jjh"/>
+                        <outlet property="humLabel" destination="AeB-o9-AnD" id="TU7-Im-uS8"/>
                         <outlet property="humidity" destination="9X6-3r-j07" id="3u4-vK-roU"/>
+                        <outlet property="hummView" destination="qcq-qQ-Wh9" id="QBk-9J-oGs"/>
                         <outlet property="imageView" destination="ace-Ik-G0U" id="V4a-ah-E4s"/>
+                        <outlet property="locationButton" destination="vaF-Gl-a9I" id="Nnc-Kt-P2u"/>
                         <outlet property="temp1Label" destination="E2Q-hR-PYU" id="tjR-PY-ebs"/>
                         <outlet property="temp2Label" destination="Qr3-zV-ht8" id="X9E-0a-zsG"/>
                         <outlet property="temp3Label" destination="Bwz-QZ-l5n" id="A9f-47-fbx"/>
                         <outlet property="temp4Label" destination="ghU-WT-aKB" id="fBf-fn-tIP"/>
+                        <outlet property="tempview" destination="GNg-cT-QVT" id="8Qa-U7-FxS"/>
                         <outlet property="wind" destination="HOU-2B-sJO" id="y2g-6E-eIj"/>
+                        <outlet property="windLbl" destination="MtM-4S-OLh" id="8Ep-VB-Vsl"/>
+                        <outlet property="windView" destination="HcL-41-icK" id="FAO-5X-kYo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -386,7 +387,6 @@
         <image name="humidity.fill" catalog="system" width="128" height="106"/>
         <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="sparkles" catalog="system" width="115" height="128"/>
         <image name="thermometer.high" catalog="system" width="80" height="128"/>
         <image name="wind" catalog="system" width="128" height="103"/>
         <systemColor name="secondaryLabelColor">
