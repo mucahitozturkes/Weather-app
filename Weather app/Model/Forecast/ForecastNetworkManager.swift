@@ -12,6 +12,7 @@ protocol ForecastNetworkManagerDelegate {
     func didFailWithErrorForecast(error: Error)
 }
 
+
 class ForecastNetworkManager {
     
     static let shared = ForecastNetworkManager()
@@ -35,37 +36,37 @@ class ForecastNetworkManager {
                         
                         self.delegate?.didUpdateForecast(self, forecast: forecast)
                     }
-                    
                 }
                 
             }
             task.resume()
-            
         }
     }
+    
     func parseJSONForecast(forecastData: Data) -> ForecastModel? {
         let decoder = JSONDecoder()
         
         do {
             let decodedData = try decoder.decode(ForecastData.self, from: forecastData)
             
-            var temps: [Float] = []
-            var dates: [String] = []
+            let date1 = ForecastModel.formattedDateString(decodedData.list[9].dt_txt)
+            let date2 = ForecastModel.formattedDateString(decodedData.list[17].dt_txt)
+            let date3 = ForecastModel.formattedDateString(decodedData.list[25].dt_txt)
+            let date4 = ForecastModel.formattedDateString(decodedData.list[33].dt_txt)
             
-            for item in decodedData.list {
-                if item.dt_txt.hasSuffix("12:00:00") {
-                    temps.append(item.main.temp)
-                    dates.append(ForecastModel.formattedDateString(item.dt_txt))
-                }
-            }
+            let id1   = decodedData.list[9].weather[0].id
+            let id2   = decodedData.list[17].weather[0].id
+            let id3   = decodedData.list[25].weather[0].id
+            let id4   = decodedData.list[33].weather[0].id
             
-            if temps.count >= 4 {
-                let forecast = ForecastModel(temp1: temps[0], temp2: temps[1], temp3: temps[2], temp4: temps[3],
-                                             dates1: dates[0], dates2: dates[1], dates3: dates[2], dates4: dates[3])
-                return forecast
-            } else {
-                return nil
-            }
+            let temp1 = decodedData.list[9].main.temp
+            let temp2 = decodedData.list[17].main.temp
+            let temp3 = decodedData.list[25].main.temp
+            let temp4 = decodedData.list[33].main.temp
+    
+    
+            let forecast = ForecastModel(id1: id1, id2: id2, id3: id3, id4: id4, temp1: temp1, temp2: temp2, temp3: temp3, temp4: temp4, dates1: date1, dates2: date2, dates3: date3, dates4: date4)
+            return forecast
             
         } catch {
             delegate?.didFailWithErrorForecast(error: error)
@@ -75,5 +76,8 @@ class ForecastNetworkManager {
 
 
 
-
+   
    }
+
+
+

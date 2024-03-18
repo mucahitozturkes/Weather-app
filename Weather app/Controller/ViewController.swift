@@ -9,7 +9,13 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-   
+
+    @IBOutlet weak var backgorundView: UIView!
+    
+    @IBOutlet weak var cloud4Image: UIImageView!
+    @IBOutlet weak var cloud3Image: UIImageView!
+    @IBOutlet weak var cloud2Image: UIImageView!
+    @IBOutlet weak var cloud1Image: UIImageView!
     
     @IBOutlet weak var temp4Label: UILabel!
     @IBOutlet weak var temp3Label: UILabel!
@@ -43,6 +49,7 @@ class ViewController: UIViewController {
         cityNameTextField.delegate             = self
         WeatherNetworkManager.shared.delegate  = self
         ForecastNetworkManager.shared.delegate = self
+        setBackgroundView()
      
     }
     
@@ -67,6 +74,11 @@ extension ViewController: UITextFieldDelegate {
         if let city = cityNameTextField.text {
             WeatherAPI.shared.fetchWeather(cityName: city)
         }
+    }
+    
+    func setBackgroundView() {
+        backgorundView.layer.cornerRadius = 16
+        
     }
 }
 
@@ -115,10 +127,23 @@ extension ViewController: ForecastNetworkManagerDelegate {
             self.date2Label.text    = forecast.dates2
             self.date3Label.text    = forecast.dates3
             self.date4Label.text    = forecast.dates4
+            
             self.temp1Label.text    = forecast.temp1String
             self.temp2Label.text    = forecast.temp2String
             self.temp3Label.text    = forecast.temp3String
             self.temp4Label.text    = forecast.temp4String
+         
+            
+            if let symbolImage1 = UIImage(systemName: forecast.getConditionName(id: forecast.id1))?.withTintColor(.white, renderingMode: .alwaysOriginal),
+               let symbolImage2 = UIImage(systemName: forecast.getConditionName(id: forecast.id2))?.withTintColor(.white, renderingMode: .alwaysOriginal),
+               let symbolImage3 = UIImage(systemName: forecast.getConditionName(id: forecast.id3))?.withTintColor(.white, renderingMode: .alwaysOriginal),
+               let symbolImage4 = UIImage(systemName: forecast.getConditionName(id: forecast.id4))?.withTintColor(.white, renderingMode: .alwaysOriginal) {
+                    self.cloud1Image.image = symbolImage1
+                    self.cloud2Image.image = symbolImage2
+                    self.cloud3Image.image = symbolImage3
+                    self.cloud4Image.image = symbolImage4
+                }
+            
         }
            
     }

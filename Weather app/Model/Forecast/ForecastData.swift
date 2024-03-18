@@ -16,13 +16,18 @@ struct ForecastData: Codable {
 struct ListItem: Codable {
     let dt_txt: String
     let main: MainItem
-    
+    let weather: [WeatherItem]
 }
 
 
 struct MainItem: Codable {
     let temp: Float
 }
+
+struct WeatherItem: Codable {
+    let id: Float
+}
+
 
 
 
