@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidity: UILabel!
     @IBOutlet weak var feelings: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var cityNameTextField: UITextField!
+   
     @IBOutlet weak var cityCal: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
     
@@ -55,8 +55,7 @@ class ViewController: UIViewController {
         locationManager.delegate               = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        
-        cityNameTextField.delegate             = self
+       
         WeatherNetworkManager.shared.delegate  = self
         ForecastNetworkManager.shared.delegate = self
         setBackgroundView()
@@ -69,29 +68,54 @@ class ViewController: UIViewController {
         locationManager.requestLocation()
     }
     
-    
-
-}
-
-extension ViewController: UITextFieldDelegate {
-    
-    @IBAction func findCity(_ sender: UIButton) {
-        cityNameTextField.endEditing(true)
-    }
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if let city = cityNameTextField.text {
-            WeatherAPI.shared.fetchWeather(cityName: city)
-            ForecastAPI.shared.fetchForecastCityName(cityName: city)
-        }
-    }
-    
     func setBackgroundView() {
         backgorundView.layer.cornerRadius = 16
         
     }
+    
+    func setHideAll() {
+        locationButton.addPulseAnimation()
+                    self.cityCal.alpha          = 0.0
+                    self.cityNameLabel.alpha    = 0.0
+                    self.feelings.alpha         = 0.0
+                    self.humidity.alpha         = 0.0
+                    self.wind.alpha             = 0.0
+                    self.descrption.alpha       = 0.0
+                    self.imageView.alpha        = 0.0
+                    self.hummView.alpha         = 0.0
+                    self.windView.alpha         = 0.0
+                    self.feelView.alpha         = 0.0
+                    self.backgorundView.alpha   = 0.0
+                    self.humLabel.alpha         = 0.0
+                    self.windLbl.alpha          = 0.0
+                    self.feelsLabel.alpha       = 0.0
+                    self.tempview.alpha         = 0.0
+    }
+    
+    
+    func setUnHideAll() {
+        locationButton.removePulseAnimation()
+        UIView.animate(withDuration: 3.0) {
+                    self.cityCal.alpha          = 1.0
+                    self.cityNameLabel.alpha    = 1.0
+                    self.feelings.alpha         = 1.0
+                    self.humidity.alpha         = 1.0
+                    self.wind.alpha             = 1.0
+                    self.descrption.alpha       = 1.0
+                    self.imageView.alpha        = 1.0
+                    self.hummView.alpha         = 1.0
+                    self.windView.alpha         = 1.0
+                    self.feelView.alpha         = 1.0
+                    self.backgorundView.alpha   = 1.0
+                    self.humLabel.alpha         = 1.0
+                    self.windLbl.alpha          = 1.0
+                    self.feelsLabel.alpha       = 1.0
+                    self.tempview.alpha         = 1.0
+                }
+        
+    }
+    
+
 }
 
 
@@ -132,49 +156,6 @@ extension ViewController: NetworkManagerDelegate {
         
     }
   
-    func setHideAll() {
-        locationButton.addPulseAnimation()
-                    self.cityCal.alpha          = 0.0
-                    self.cityNameLabel.alpha    = 0.0
-                    self.feelings.alpha         = 0.0
-                    self.humidity.alpha         = 0.0
-                    self.wind.alpha             = 0.0
-                    self.descrption.alpha       = 0.0
-                    self.imageView.alpha        = 0.0
-                    self.hummView.alpha         = 0.0
-                    self.windView.alpha         = 0.0
-                    self.feelView.alpha         = 0.0
-                    self.backgorundView.alpha   = 0.0
-                    self.humLabel.alpha         = 0.0
-                    self.windLbl.alpha          = 0.0
-                    self.feelsLabel.alpha       = 0.0
-                    self.tempview.alpha         = 0.0
-        
-    }
-    
-    
-    func setUnHideAll() {
-        locationButton.removePulseAnimation()
-        UIView.animate(withDuration: 3.0) {
-                    self.cityCal.alpha          = 1.0
-                    self.cityNameLabel.alpha    = 1.0
-                    self.feelings.alpha         = 1.0
-                    self.humidity.alpha         = 1.0
-                    self.wind.alpha             = 1.0
-                    self.descrption.alpha       = 1.0
-                    self.imageView.alpha        = 1.0
-                    self.hummView.alpha         = 1.0
-                    self.windView.alpha         = 1.0
-                    self.feelView.alpha         = 1.0
-                    self.backgorundView.alpha   = 1.0
-                    self.humLabel.alpha         = 1.0
-                    self.windLbl.alpha          = 1.0
-                    self.feelsLabel.alpha       = 1.0
-                    self.tempview.alpha         = 1.0
-                }
-        
-    }
-    
     
     func didFailWithErrorWeather(error: Error) {
         print(error)
