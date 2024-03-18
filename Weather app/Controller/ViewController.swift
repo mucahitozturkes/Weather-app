@@ -73,6 +73,7 @@ extension ViewController: UITextFieldDelegate {
         
         if let city = cityNameTextField.text {
             WeatherAPI.shared.fetchWeather(cityName: city)
+            ForecastAPI.shared.fetchForecastCityName(cityName: city)
         }
     }
     
@@ -164,7 +165,7 @@ extension ViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             WeatherAPI.shared.fetchWeather(latitude: lat, longitude: lon)
-            ForecastAPI.shared.fetchCityName(latitude: lat, longitude: lon)
+            ForecastAPI.shared.fetchCityLocation(latitude: lat, longitude: lon)
         }
     }
     

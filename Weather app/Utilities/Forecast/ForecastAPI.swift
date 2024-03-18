@@ -17,8 +17,14 @@ struct ForecastAPI {
     var metric              = "&units=metric"
     var appied              = "&appid="
 
+    
+    func fetchForecastCityName(cityName: String) {
+        let urlString = baseURL + "q=\(cityName)" + appied + secureForecastKey + metric
+        
+        ForecastNetworkManager.shared.performRequestForecast(with: urlString)
+    }
 
-    func fetchCityName(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    func fetchCityLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
 
         let urlString = baseURL + "lat=\(latitude)&lon=\(longitude)" + appied + secureForecastKey + metric
 
