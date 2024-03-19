@@ -30,7 +30,7 @@ struct WeatherModel {
     let wind: Float
  
     
-    var temperatureString: String { return String(format: "%.0f", temperature) }
+    var temperatureString: String { return String(format: "%.0fº", temperature) }
     var feelsLikeString: String { return String(format: "%.0fº", feelsLike) }
     var humidityString: String { return String(format: "%.0f%%", humidity) }
     var windString: String { return String(format: "%.0fkm/h", wind) }

@@ -11,8 +11,9 @@ import CoreLocation
 class ViewController: UIViewController {
 
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var tempview: UILabel!
+    
     @IBOutlet weak var feelsLabel: UILabel!
     @IBOutlet weak var windLbl: UILabel!
     @IBOutlet weak var humLabel: UILabel!
@@ -60,9 +61,12 @@ class ViewController: UIViewController {
         ForecastNetworkManager.shared.delegate = self
         setBackgroundView()
         setHideAll()
-       
+        searchBar.delegate = self
+        searchBar.isHidden = true
+        setSearhBar()
     }
-    
+  
+ 
     
     @IBAction func locationPressed(_ sender: UIButton) {
         locationManager.requestLocation()
@@ -89,7 +93,6 @@ class ViewController: UIViewController {
                     self.humLabel.alpha         = 0.0
                     self.windLbl.alpha          = 0.0
                     self.feelsLabel.alpha       = 0.0
-                    self.tempview.alpha         = 0.0
     }
     
     
@@ -110,13 +113,13 @@ class ViewController: UIViewController {
                     self.humLabel.alpha         = 1.0
                     self.windLbl.alpha          = 1.0
                     self.feelsLabel.alpha       = 1.0
-                    self.tempview.alpha         = 1.0
                 }
         
     }
     
 
 }
+
 
 
 extension ViewController: NetworkManagerDelegate {
@@ -212,8 +215,6 @@ extension ViewController: CLLocationManagerDelegate {
             WeatherAPI.shared.fetchWeather(latitude: lat, longitude: lon)
             ForecastAPI.shared.fetchCityLocation(latitude: lat, longitude: lon)
             setUnHideAll()
-           
-         
         }
     }
     
@@ -222,3 +223,40 @@ extension ViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
+
+extension ViewController: UISearchBarDelegate {
+    
+    @IBAction func findCity(_ sender: UIButton) {
+        
+        searchBar.isHidden.toggle()
+        cityNameLabel.isHidden.toggle()
+        
+        if locationButton.layer.animation(forKey: "pulse") != nil {
+            locationButton.removePulseAnimation()
+        } else {
+            locationButton.addPulseAnimation()
+        }
+        
+        if let city = searchBar.text {
+            WeatherAPI.shared.fetchWeather(cityName: city)
+            ForecastAPI.shared.fetchForecastCityName(cityName: city)
+        } else {
+            print("Error")
+        }
+      
+        searchBar.resignFirstResponder()
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func setSearhBar() {
+        if let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField {
+                  textFieldInsideSearchBar.textColor = .white
+                  textFieldInsideSearchBar.attributedPlaceholder = NSAttributedString(string: "Enter new city name here...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            textFieldInsideSearchBar.leftView = nil
+              }
+      
+    }
+}
+
+   
+

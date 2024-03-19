@@ -42,6 +42,7 @@ class WeatherNetworkManager {
                     }
                     
                 }
+                
             }
             
                 task.resume()
@@ -65,6 +66,9 @@ class WeatherNetworkManager {
             
             
             let weather = WeatherModel(conditonId: id, cityName: name, temperature: temp, descriptions: description, feelsLike: feeling, humidity: humidity, wind: wind)
+            
+           
+            
             return weather
           
             
@@ -74,6 +78,8 @@ class WeatherNetworkManager {
         }
     }
     
+    
+
 
     
     
